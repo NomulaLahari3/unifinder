@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model College {
+  id                  Int      @id @default(autoincrement())
+  name                String
+  location            String
+  fees                Int
+  rating              Float
+  placementPercentage Float
+  description         String
+  imageUrl            String?
+  mockCutoffRank      Int?     // For predictor tool
+  courses             Course[]
+  reviews             Review[]
+}
+
+model Course {
+  id        Int      @id @default(autoincrement())
+  name      String
+  duration  String
+  fees      Int
+  collegeId Int
+  college   College  @relation(fields: [collegeId], references: [id])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userName  String
+  rating    Float
+  comment   String
+  collegeId Int
+  college   College  @relation(fields: [collegeId], references: [id])
+}
