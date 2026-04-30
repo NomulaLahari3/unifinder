@@ -6,7 +6,10 @@ const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://unifinder-xi.vercel.app", "http://localhost:3000"],
+  credentials: true
+}));
 app.use(express.json());
 
 // 1. College Listing + Search + Filters
