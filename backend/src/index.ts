@@ -137,6 +137,6 @@ app.get('/api/predictor', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Backend running at http://localhost:${port}`);
+app.listen(Number(port), '0.0.0.0', () => {
+  console.log(`Backend running at http://0.0.0.0:${port}`);
 });
